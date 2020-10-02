@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { AddItemService } from 'src/app/add-item/add-item.service';
+import { ItemApiService } from 'src/app/core/api/item-api.service';
+import { ItemService } from 'src/app/core/service/item/item.service';
 import { Item } from 'src/app/item-form/types/item.type';
 
 @Component({
@@ -11,13 +12,13 @@ export class ViewItemComponent implements OnInit {
 
   @Input() item: Item;
 
-  constructor(private addItemService: AddItemService) { }
+  constructor(private itemService: ItemService) { }
 
   ngOnInit() {
   }
 
-  removeItem(id: number): void {
-    this.addItemService.removeItem(id);
+  removeItem(objectId: number): void {
+    this.itemService.removeItem(objectId);
   }
 
 }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { AddItemService } from '../add-item/add-item.service';
+import { ItemService } from '../core/service/item/item.service';
 import { Item } from './types/item.type';
 
 @Component({
@@ -11,7 +11,7 @@ import { Item } from './types/item.type';
 export class ItemFormComponent implements OnInit {
   inventoryItem: FormGroup;
 
-  constructor(private addItemService: AddItemService) {}
+  constructor(private itemService: ItemService) {}
 
   ngOnInit() {
     this.inventoryItem = new FormGroup({
@@ -27,7 +27,7 @@ export class ItemFormComponent implements OnInit {
       description: form.value.itemDescription,
       price: form.value.itemPrice,
     };
-    this.addItemService.addItem(item);
+    this.itemService.addItem(item);
     // console.log('Valid?', form.valid); // true or false
   }
 }

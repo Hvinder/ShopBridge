@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AddItemService } from '../add-item/add-item.service';
+import { ItemService } from '../core/service/item/item.service';
 import { Item } from '../item-form/types/item.type';
 
 @Component({
@@ -11,10 +11,10 @@ export class InventoryComponent implements OnInit {
 
   items: Item[];
 
-  constructor(private addItemService: AddItemService) { }
+  constructor(private itemService: ItemService) { }
 
   ngOnInit() {
-    this.items = this.addItemService.getItems();
+    this.itemService.getItems().subscribe(items => this.items = items);
   }
 
 }
