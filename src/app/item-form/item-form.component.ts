@@ -10,6 +10,7 @@ import { Item } from './types/item.type';
 })
 export class ItemFormComponent implements OnInit {
   inventoryItem: FormGroup;
+  imageUrl: string;
 
   constructor(private itemService: ItemService) {}
 
@@ -21,11 +22,22 @@ export class ItemFormComponent implements OnInit {
     });
   }
 
+  onSelectFile(event) {
+    if (event.target.files && event.target.files[0]) {
+      const reader = new FileReader();
+      reader.readAsDataURL(event.target.files[0]);
+      reader.onload = (ev) => {
+        this.imageUrl = ev.target.result as string;
+      };
+    }
+  }
+
   onSubmit(form: FormGroup) {
     const item: Item = {
       name: form.value.itemName,
       description: form.value.itemDescription,
       price: form.value.itemPrice,
+      image: this.imageUrl ? this.imageUrl : null,
     };
     this.itemService.addItem(item);
     // console.log('Valid?', form.valid); // true or false

@@ -15,5 +15,6 @@
     <mat-label>Item price</mat-label>
     <input matInput formControlName="itemPrice" placeholder="Ex. $50" />
   </mat-form-field>
+  <input type="file" (change)="onSelectFile($event)" class="db" />
   <button mat-flat-button color="primary" type="submit">Add</button>
 </form>

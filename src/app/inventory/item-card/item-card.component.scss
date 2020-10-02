@@ -22,3 +22,10 @@
   background-image: url('../../../assets/icons/right-arrow.png');
   background-size: cover;
 }
+
+mat-card-title {
+  width: 200px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

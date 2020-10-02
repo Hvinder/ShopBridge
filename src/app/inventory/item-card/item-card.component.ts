@@ -10,6 +10,7 @@ import { Item } from '../../item-form/types/item.type';
 export class ItemCardComponent implements OnInit {
 
   @Input() item: Item;
+  noImage = '../../../assets/icons/no-photo.png';
 
   constructor(private itemService: ItemService) { }
 
