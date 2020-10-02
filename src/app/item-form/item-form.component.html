@@ -1,0 +1,19 @@
+<form [formGroup]="inventoryItem" (ngSubmit)="onSubmit(inventoryItem)">
+  <mat-form-field class="db">
+    <mat-label>Item name</mat-label>
+    <input matInput formControlName="itemName" placeholder="Ex. Power Bank" />
+  </mat-form-field>
+  <mat-form-field class="db">
+    <mat-label>Item description</mat-label>
+    <input
+      matInput
+      formControlName="itemDescription"
+      placeholder="Ex. Carry extra charge for emergencies"
+    />
+  </mat-form-field>
+  <mat-form-field class="db">
+    <mat-label>Item price</mat-label>
+    <input matInput formControlName="itemPrice" placeholder="Ex. $50" />
+  </mat-form-field>
+  <button mat-flat-button color="primary" type="submit">Add</button>
+</form>

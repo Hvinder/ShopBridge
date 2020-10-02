@@ -1,0 +1,14 @@
+// .item-card {
+//   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+//   max-width: 500px;
+//   margin: auto;
+//   text-align: left;
+// }
+.item-card {
+  max-width: 400px;
+}
+
+.item-image {
+  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+  background-size: cover;
+}
