@@ -7,14 +7,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ItemFormComponent } from './item-form/item-form.component';
 import { InventoryComponent } from './inventory/inventory.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { ViewItemComponent } from './inventory/view-item/view-item.component';
+import { ItemCardComponent } from './inventory/item-card/item-card.component';
 import { MatInputModule, MatFormFieldModule, MatButtonModule, MatCardModule } from '@angular/material';
 import { ItemApiService } from './core/api/item-api.service';
 import { HttpClientModule } from '@angular/common/http';
-import { ItemService } from './core/service/item/item.service';
+import { ItemService } from './core/item/item.service';
 
 @NgModule({
-  declarations: [AppComponent, ItemFormComponent, InventoryComponent, ViewItemComponent],
+  declarations: [AppComponent, ItemFormComponent, InventoryComponent, ItemCardComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

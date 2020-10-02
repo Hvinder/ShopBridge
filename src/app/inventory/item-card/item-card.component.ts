@@ -1,14 +1,13 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ItemApiService } from 'src/app/core/api/item-api.service';
-import { ItemService } from 'src/app/core/service/item/item.service';
+import { ItemService } from 'src/app/core/item/item.service';
 import { Item } from 'src/app/item-form/types/item.type';
 
 @Component({
-  selector: 'app-view-item',
-  templateUrl: './view-item.component.html',
-  styleUrls: ['./view-item.component.scss']
+  selector: 'app-item-card',
+  templateUrl: './item-card.component.html',
+  styleUrls: ['./item-card.component.scss']
 })
-export class ViewItemComponent implements OnInit {
+export class ItemCardComponent implements OnInit {
 
   @Input() item: Item;
 
@@ -20,5 +19,4 @@ export class ViewItemComponent implements OnInit {
   removeItem(objectId: number): void {
     this.itemService.removeItem(objectId);
   }
-
 }
