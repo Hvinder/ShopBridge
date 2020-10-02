@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Item } from 'src/app/item-form/types/item.type';
 import { ItemApiService } from '../../api/item-api.service';
@@ -7,23 +7,25 @@ import { ItemApiService } from '../../api/item-api.service';
   providedIn: 'root',
 })
 export class ItemService {
-  items: Observable<Item[]>;
+  items: Item[];
+  itemsUpdated: EventEmitter<Item[]> = new EventEmitter();
 
-  constructor(private itemApiService: ItemApiService) {
-    this.fetchItems();
-  }
+  constructor(private itemApiService: ItemApiService) {}
 
   /* Getter for component */
-  getItems(): Observable<Item[]> {
-    return this.items;
-  }
+  // getItems(): Item[] {
+  //   return this.items;
+  // }
 
   addItem(item: Item): void {
     this.itemApiService.addItem(item).subscribe((res) => this.fetchItems());
   }
 
   fetchItems(): void {
-    this.items = this.itemApiService.fetchItems();
+    this.itemApiService.fetchItems().subscribe(items => {
+      this.items = items;
+      this.itemsUpdated.emit(this.items);
+    });
   }
 
   removeItem(objectId: number): void {

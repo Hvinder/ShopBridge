@@ -14,7 +14,8 @@ export class InventoryComponent implements OnInit {
   constructor(private itemService: ItemService) { }
 
   ngOnInit() {
-    this.itemService.getItems().subscribe(items => this.items = items);
+    this.itemService.fetchItems();
+    this.itemService.itemsUpdated.subscribe(items => this.items = items);
   }
 
 }
