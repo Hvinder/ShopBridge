@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ItemService } from '../../core/item/item.service';
 import { Item } from '../../item-form/types/item.type';
 
@@ -12,7 +13,7 @@ export class ItemCardComponent implements OnInit {
   @Input() item: Item;
   noImage = '../../../assets/icons/no-photo.png';
 
-  constructor(private itemService: ItemService) { }
+  constructor(private itemService: ItemService, private router: Router) { }
 
   ngOnInit() {
   }

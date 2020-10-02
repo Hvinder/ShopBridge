@@ -18,8 +18,21 @@
   <label class="custom-file-upload">
     <input type="file" (change)="onSelectFile($event)" class="db" />
     Upload Item Image
-</label>
-<img src="../../assets/icons/check.png" width="30px" alt="" *ngIf="!!imageUrl" class="tick">
-  <button style="float: right;" mat-flat-button color="primary" type="submit">Add to Inventory</button>
+    <img
+      src="../../assets/icons/check.png"
+      width="30px"
+      alt=""
+      *ngIf="!!imageUrl"
+      class="tick"
+    />
+  </label>
+  <button class="add-button" mat-flat-button color="primary" type="submit">
+    Add to Inventory
+  </button>
 </form>
-<mat-progress-bar *ngIf="itemService.isApiLoading" mode="indeterminate"></mat-progress-bar>
+<div style="margin-top: 20px; height: 10px">
+  <mat-progress-bar
+    *ngIf="itemService.isApiLoading"
+    mode="indeterminate"
+  ></mat-progress-bar>
+</div>

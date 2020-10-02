@@ -3,9 +3,10 @@
     <button
       mat-icon-button
       class="example-icon"
+      [routerLink]="'/inventory'"
       aria-label="Example icon-button with menu icon"
     >
-      <mat-icon>menu</mat-icon>
+      <mat-icon>home</mat-icon>
     </button>
     <span>ShopBridge</span>
     <span class="spacer"></span>
@@ -13,15 +14,16 @@
       mat-icon-button
       class="example-icon favorite-icon"
       aria-label="Example icon-button with heart icon"
+      (click)="openRepo()"
     >
-      <mat-icon>favorite</mat-icon>
+      <mat-icon>open_in_new</mat-icon>
     </button>
     <button
       mat-icon-button
       class="example-icon"
       aria-label="Example icon-button with share icon"
     >
-      <mat-icon>share</mat-icon>
+      <mat-icon (click)="shareApp()">share</mat-icon>
     </button>
   </mat-toolbar>
 </p>

@@ -16,3 +16,17 @@ input[type="file"] {
 .tick {
     margin-left: 10px;
 }
+
+.add-button {
+    float: right
+}
+
+@media screen and (max-width: 767px) {
+    .add-button {
+        width: 100%;
+    }
+    .custom-file-upload {
+        width: 100%;
+        text-align: center;
+    }
+}

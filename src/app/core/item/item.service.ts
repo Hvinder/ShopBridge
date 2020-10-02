@@ -7,9 +7,9 @@ import { ItemApiService } from '../api/item-api.service';
   providedIn: 'root',
 })
 export class ItemService {
-  items: Item[];
+  items: Item[] = JSON.parse(localStorage.getItem('items'));
   itemsUpdated: EventEmitter<Item[]> = new EventEmitter();
-  isApiLoading = false;
+  isApiLoading = true;
 
   constructor(private itemApiService: ItemApiService) {}
 
@@ -26,9 +26,14 @@ export class ItemService {
   fetchItems(): void {
     this.itemApiService.fetchItems().subscribe(items => {
       this.items = items;
+      localStorage.setItem('items', JSON.stringify(items));
       this.itemsUpdated.emit(this.items);
       this.isApiLoading = false;
     });
+  }
+
+  getItemById(objectId: number): Item {
+    return this.items.find(item => +item.objectId === objectId);
   }
 
   removeItem(objectId: number): void {
