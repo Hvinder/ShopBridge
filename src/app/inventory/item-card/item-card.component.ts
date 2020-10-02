@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ItemService } from 'src/app/core/item/item.service';
-import { Item } from 'src/app/item-form/types/item.type';
+import { ItemService } from '../../core/item/item.service';
+import { Item } from '../../item-form/types/item.type';
 
 @Component({
   selector: 'app-item-card',

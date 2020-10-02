@@ -1,6 +1,6 @@
 import { EventEmitter, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Item } from 'src/app/item-form/types/item.type';
+import { Item } from '../../item-form/types/item.type';
 import { ItemApiService } from '../api/item-api.service';
 
 @Injectable({

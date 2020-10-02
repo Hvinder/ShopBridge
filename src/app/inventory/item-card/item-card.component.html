@@ -23,11 +23,11 @@
     src="https://material.angular.io/assets/img/examples/shiba2.jpg"
     alt="Image of Item"
   />
-  <mat-card-content>
+  <!-- <mat-card-content>
     <p>Description: {{ item.description }}</p>
-  </mat-card-content>
-  <mat-card-actions>
-    <button mat-button>VIEW</button>
-    <button mat-button (click)="removeItem(item.objectId)">REMOVE</button>
+  </mat-card-content> -->
+  <mat-card-actions class="row">
+    <button mat-button class="col-md-6 col-lg-6 m0">VIEW</button>
+    <button mat-button (click)="removeItem(item.objectId)" class="col-md-6 col-lg-6 m0">REMOVE</button>
   </mat-card-actions>
 </mat-card>
