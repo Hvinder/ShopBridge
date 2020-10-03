@@ -10,7 +10,7 @@ export const mockItems: Item[] = [
   {
     objectId: 2,
     name: 'SSD',
-    description: 'SolobjectId State Drive',
+    description: 'Solid State Drive',
     price: '250',
   },
   {

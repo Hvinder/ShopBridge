@@ -11,6 +11,7 @@ import { Item } from 'src/app/item-form/types/item.type';
 export class ItemDetailComponent implements OnInit {
 
   item: Item;
+  noImage = '../../../assets/icons/no-photo.png';
 
   constructor(private activatedroute: ActivatedRoute, private itemService: ItemService) { }
 
