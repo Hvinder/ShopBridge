@@ -13,7 +13,11 @@ export class ItemApiService {
   constructor(private http: HttpClient) {}
 
   fetchItems(): Observable<Item[]> {
-    return this.http.get<Item[]>(this.fetchAllItemsUrl);
+    return this.http.get<Item[]>(this.fetchAllItemsUrl).pipe(
+      catchError((error) => {
+        return of(null);
+      })
+    );
   }
 
   addItem(item: Item): Observable<Item> {
@@ -23,7 +27,7 @@ export class ItemApiService {
         map((response) => {
           return response.body as Item;
         }),
-        catchError(error => {
+        catchError((error) => {
           return of(null);
         })
       );
