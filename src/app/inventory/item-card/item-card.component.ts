@@ -6,17 +6,15 @@ import { Item } from '../../item-form/types/item.type';
 @Component({
   selector: 'app-item-card',
   templateUrl: './item-card.component.html',
-  styleUrls: ['./item-card.component.scss']
+  styleUrls: ['./item-card.component.scss'],
 })
 export class ItemCardComponent implements OnInit {
-
   @Input() item: Item;
   noImage = '../../../assets/icons/no-photo.png';
 
-  constructor(private itemService: ItemService, private router: Router) { }
+  constructor(private itemService: ItemService, private router: Router) {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   removeItem(objectId: number): void {
     this.itemService.removeItem(objectId);

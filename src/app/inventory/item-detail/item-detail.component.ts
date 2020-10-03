@@ -21,7 +21,6 @@ export class ItemDetailComponent implements OnInit {
 
   getItem(objectId: number): void {
     this.item = this.itemService.getItemById(objectId);
-    console.log(this.item);
   }
 
 }

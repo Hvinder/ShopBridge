@@ -1,26 +1,14 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { MatSnackBar } from '@angular/material';
-
+import { MockService } from '../core/mock-service';
 import { HeaderComponent } from './header.component';
 
 describe('HeaderComponent', () => {
   let component: HeaderComponent;
-  let fixture: ComponentFixture<HeaderComponent>;
-  let snackBar: MatSnackBar;
-
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ HeaderComponent ],
-      providers: [MatSnackBar]
-    })
-    .compileComponents();
-  }));
+  let snackBar;
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(HeaderComponent);
-    component = fixture.componentInstance;
-    snackBar = TestBed.get(MatSnackBar);
-    fixture.detectChanges();
+    snackBar = new MockService();
+    component = new HeaderComponent(snackBar);
   });
 
   it('should create', () => {
@@ -28,12 +16,15 @@ describe('HeaderComponent', () => {
   });
 
   it('should test openRepo', () => {
+    spyOn(window, 'open');
     component.openRepo();
     expect(window.open).toHaveBeenCalledWith(component.repoUrl);
   });
 
   it('should test shareApp', () => {
+    // spyOn(document, 'execCommand');
     component.shareApp();
     expect(snackBar.open).toHaveBeenCalled();
+    // expect(document.execCommand).toHaveBeenCalledWith('copy');
   });
 });

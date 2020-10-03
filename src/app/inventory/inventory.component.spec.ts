@@ -1,25 +1,24 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { MockService } from '../core/mock-service';
+import { mockItems } from '../item-form/mocks/items.mock';
 import { InventoryComponent } from './inventory.component';
 
 describe('InventoryComponent', () => {
   let component: InventoryComponent;
-  let fixture: ComponentFixture<InventoryComponent>;
-
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ InventoryComponent ]
-    })
-    .compileComponents();
-  }));
+  const itemService = new MockService();
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(InventoryComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    component = new InventoryComponent(itemService as any);
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should call fetchItems on init', () => {
+    spyOn(itemService, 'fetchItems');
+    component.ngOnInit();
+    component.onResize(null);
+    expect(itemService.fetchItems).toHaveBeenCalled();
+    expect(component.items).toBe(mockItems);
   });
 });
