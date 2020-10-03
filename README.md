@@ -20,3 +20,9 @@ ng serve
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
 Please make sure to update tests as appropriate.
+
+## Pending tasks
+- [x] Fix broken tick after image upload
+- [ ] Update Item Details page
+- [ ] Fix broken image issue
+- [ ] Dark mode
