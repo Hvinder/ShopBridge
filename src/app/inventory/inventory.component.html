@@ -1,7 +1,7 @@
 <app-item-form></app-item-form>
 
 <div class="inventory" [ngClass]="{row: innerWidth >= 420}">
-  <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4" *ngFor="let item of items">
+  <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4 card" *ngFor="let item of items">
     <app-item-card [item]="item"></app-item-card>
   </div>
 </div>

@@ -1,14 +1,11 @@
-// .item-card {
-//   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-//   max-width: 500px;
-//   margin: auto;
-//   text-align: left;
-// }
 .item-card {
   max-width: 400px;
   box-shadow: 4px 4px 8px 4px rgba(0, 0, 0, 0.2);
-  margin: 10px;
   width: 100%;
+}
+
+.mat-card {
+  margin-bottom: 15px;
 }
 
 .fr {
@@ -26,6 +23,7 @@
 
 .mat-card-image {
   height: 300px;
+  padding: 20px;
 }
 
 mat-card-title {
@@ -33,4 +31,10 @@ mat-card-title {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+mat-card-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

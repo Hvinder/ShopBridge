@@ -12,7 +12,7 @@ export class ItemFormComponent implements OnInit {
   inventoryItem: FormGroup;
   imageUrl: string;
 
-  constructor(private itemService: ItemService) {}
+  constructor(public itemService: ItemService) {}
 
   ngOnInit() {
     this.inventoryItem = new FormGroup({
@@ -27,7 +27,7 @@ export class ItemFormComponent implements OnInit {
       const reader = new FileReader();
       reader.readAsDataURL(event.target.files[0]);
       reader.onload = (ev) => {
-        this.imageUrl = ev.target.result as string;
+        this.imageUrl = reader.result as string;
       };
     }
   }
