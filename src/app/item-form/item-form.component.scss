@@ -14,7 +14,9 @@ input[type="file"] {
 }
 
 .tick {
-    margin-left: 10px;
+    // margin-left: 10px;
+    vertical-align: bottom;
+    color: green;
 }
 
 .add-button {
@@ -28,5 +30,8 @@ input[type="file"] {
     .custom-file-upload {
         width: 100%;
         text-align: center;
+    }
+    mat-progress-bar {
+        margin-top: 60px;
     }
 }

@@ -18,13 +18,14 @@
   <label class="custom-file-upload">
     <input type="file" (change)="onSelectFile($event)" class="db" />
     Upload Item Image
-    <img
+    <!-- <img
       src="../../assets/icons/check.png"
       width="20px"
       alt=""
       *ngIf="!!imageUrl"
       class="tick"
-    />
+    /> -->
+    <mat-icon *ngIf="!!imageUrl" class="tick">check_circle</mat-icon>
   </label>
   <button class="add-button" mat-flat-button color="primary" type="submit">
     Add to Inventory
