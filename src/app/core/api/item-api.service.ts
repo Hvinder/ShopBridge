@@ -34,6 +34,10 @@ export class ItemApiService {
   }
 
   deleteItem(id: number): Observable<Item> {
-    return this.http.delete<Item>(this.fetchAllItemsUrl + '/' + id);
+    return this.http.delete<Item>(this.fetchAllItemsUrl + '/' + id).pipe(
+      catchError((error) => {
+        return of(null);
+      })
+    );
   }
 }

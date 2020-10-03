@@ -1,6 +1,5 @@
 import { EventEmitter, Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material';
-import { Observable } from 'rxjs';
 import { Item } from '../../item-form/types/item.type';
 import { ItemApiService } from '../api/item-api.service';
 
@@ -21,9 +20,9 @@ export class ItemService {
     this.isApiLoading = true;
     this.itemApiService.addItem(item).subscribe((res) => {
       if (res !== null) {
-        this.fetchItems();
+        this.items.push(res);
+        this.dispatchItems();
       } else {
-        this.isApiLoading = false;
         this.openErrorSnackbar(
           'Payload too large. Please choose a smaller image (<100KB)'
         );
@@ -37,13 +36,12 @@ export class ItemService {
       if (items !== null) {
         this.items = items;
         localStorage.setItem('items', JSON.stringify(items));
-        this.itemsUpdated.emit(this.items);
+        this.dispatchItems();
       } else {
         this.openErrorSnackbar(
           'Error Fetching Inventory. Please check your connectivity'
         );
       }
-      this.isApiLoading = false;
     });
   }
 
@@ -53,14 +51,29 @@ export class ItemService {
 
   removeItem(objectId: number): void {
     this.isApiLoading = true;
-    this.itemApiService
-      .deleteItem(objectId)
-      .subscribe((res) => this.fetchItems());
+    this.itemApiService.deleteItem(objectId).subscribe((res) => {
+      if (res !== null) {
+        this.items = this.items.filter(
+          (item) => item.objectId !== res.objectId
+        );
+        this.dispatchItems();
+      } else {
+        this.openErrorSnackbar(
+          'Error removing item. Please check your connectivity'
+        );
+      }
+    });
+  }
+
+  dispatchItems(): void {
+    this.itemsUpdated.emit(this.items);
+    this.isApiLoading = false;
   }
 
   openErrorSnackbar(message: string) {
     this.snackBar.open(message, 'dismiss', {
       duration: 2000,
     });
+    this.isApiLoading = false;
   }
 }
