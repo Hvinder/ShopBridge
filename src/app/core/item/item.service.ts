@@ -20,10 +20,17 @@ export class ItemService {
 
   addItem(item: Item): void {
     this.isApiLoading = true;
-    this.itemApiService.addItem(item).subscribe((res) => this.fetchItems());
+    this.itemApiService.addItem(item).subscribe((res) => {
+      if (res !== null) {
+        this.fetchItems();
+      } else {
+        this.isApiLoading = false;
+      }
+    });
   }
 
   fetchItems(): void {
+    this.isApiLoading = true;
     this.itemApiService.fetchItems().subscribe(items => {
       this.items = items;
       localStorage.setItem('items', JSON.stringify(items));

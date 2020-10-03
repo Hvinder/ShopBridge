@@ -2,9 +2,8 @@
   <mat-toolbar>
     <button
       mat-icon-button
-      class="example-icon"
       [routerLink]="'/inventory'"
-      aria-label="Example icon-button with menu icon"
+      aria-label="icon-button with menu icon"
     >
       <mat-icon>home</mat-icon>
     </button>
@@ -12,16 +11,15 @@
     <span class="spacer"></span>
     <button
       mat-icon-button
-      class="example-icon favorite-icon"
-      aria-label="Example icon-button with heart icon"
+      class="favorite-icon"
+      aria-label="icon-button with heart icon"
       (click)="openRepo()"
     >
       <mat-icon>open_in_new</mat-icon>
     </button>
     <button
       mat-icon-button
-      class="example-icon"
-      aria-label="Example icon-button with share icon"
+      aria-label="icon-button with share icon"
     >
       <mat-icon (click)="shareApp()">share</mat-icon>
     </button>

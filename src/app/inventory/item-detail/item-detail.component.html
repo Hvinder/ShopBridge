@@ -1,14 +1,15 @@
-<div style="text-align: center;">
-    <p>
-        <img [src]="item.image" width="200px">
-    </p>
-    <p>
-        Item Name: {{ item.name }}
-    </p>
-    <p>
-        Item Price: {{ item.price }}
-    </p>
-    <p>
-        Item Description: {{ item.description }}
-    </p>
+<button
+  mat-icon-button
+  [routerLink]="'/inventory'"
+  aria-label="icon-button with menu icon"
+>
+  <mat-icon>arrow_back_ios</mat-icon>
+</button>
+<div style="text-align: center">
+  <p>
+    <img [src]="item.image" width="200px" />
+  </p>
+  <p>Item Name: {{ item.name }}</p>
+  <p>Item Price: {{ item.price }}</p>
+  <p>Item Description: {{ item.description }}</p>
 </div>

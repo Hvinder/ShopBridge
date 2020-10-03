@@ -1,6 +1,7 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
 import { Item } from '../../item-form/types/item.type';
 
 @Injectable({
@@ -16,7 +17,16 @@ export class ItemApiService {
   }
 
   addItem(item: Item): Observable<Item> {
-    return this.http.post<Item>(this.fetchAllItemsUrl, item);
+    return this.http
+      .post(this.fetchAllItemsUrl, item, { observe: 'response' })
+      .pipe(
+        map((response) => {
+          return response.body as Item;
+        }),
+        catchError(error => {
+          return of(null);
+        })
+      );
   }
 
   deleteItem(id: number): Observable<Item> {
