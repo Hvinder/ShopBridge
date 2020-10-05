@@ -23,6 +23,10 @@ input[type="file"] {
     float: right
 }
 
+.control-bar {
+    margin-top: 15px;
+}
+
 @media screen and (max-width: 767px) {
     .add-button {
         width: 100%;

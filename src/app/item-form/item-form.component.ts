@@ -1,5 +1,5 @@
 import { Component, HostListener, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, FormGroupDirective, Validators } from '@angular/forms';
 import { ItemService } from '../core/item/item.service';
 import { Item } from './types/item.type';
 
@@ -11,13 +11,14 @@ import { Item } from './types/item.type';
 export class ItemFormComponent implements OnInit {
   inventoryItem: FormGroup;
   imageUrl: string;
+  submitClicked = false;
 
   constructor(public itemService: ItemService) {}
 
   ngOnInit() {
     this.inventoryItem = new FormGroup({
-      itemName: new FormControl(''),
-      itemDescription: new FormControl(''),
+      itemName: new FormControl('', [Validators.required]),
+      itemDescription: new FormControl('', [Validators.required]),
       itemPrice: new FormControl('', [Validators.required, Validators.min(1)]),
     });
   }
@@ -32,7 +33,8 @@ export class ItemFormComponent implements OnInit {
     }
   }
 
-  onSubmit(form: FormGroup) {
+  onSubmit(form: FormGroup, formDirective: FormGroupDirective) {
+    this.submitClicked = true;
     const item: Item = {
       name: form.value.itemName,
       description: form.value.itemDescription,
@@ -41,8 +43,10 @@ export class ItemFormComponent implements OnInit {
     };
     if (form.valid) {
       this.itemService.addItem(item);
+      formDirective.resetForm();
       this.inventoryItem.reset();
       this.imageUrl = null;
+      this.submitClicked = false;
     }
   }
 }

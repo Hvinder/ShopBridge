@@ -1,7 +1,20 @@
-<form [formGroup]="inventoryItem" (ngSubmit)="onSubmit(inventoryItem)">
+<form
+  [formGroup]="inventoryItem"
+  (ngSubmit)="onSubmit(inventoryItem, formDirective)"
+  #formDirective="ngForm"
+>
   <mat-form-field class="db">
     <mat-label>Item name</mat-label>
     <input matInput formControlName="itemName" placeholder="Ex. Power Bank" />
+    <mat-error
+      *ngIf="
+        inventoryItem.get('itemName').invalid &&
+        (inventoryItem.get('itemName').dirty ||
+          inventoryItem.get('itemName').touched ||
+          submitClicked)
+      "
+      >Name is required</mat-error
+    >
   </mat-form-field>
   <mat-form-field class="db">
     <mat-label>Item description</mat-label>
@@ -10,35 +23,56 @@
       formControlName="itemDescription"
       placeholder="Ex. Carry extra charge for emergencies"
     />
+    <mat-error
+      *ngIf="
+        inventoryItem.get('itemDescription').invalid &&
+        (inventoryItem.get('itemDescription').dirty ||
+          inventoryItem.get('itemDescription').touched ||
+          submitClicked)
+      "
+      >Description is required</mat-error
+    >
   </mat-form-field>
   <mat-form-field class="db">
     <mat-label>Item price</mat-label>
-    <input matInput type="number" formControlName="itemPrice" placeholder="Ex. $50" />
+    <input
+      matInput
+      type="number"
+      formControlName="itemPrice"
+      placeholder="Ex. $50"
+    />
+    <mat-error
+      *ngIf="
+        inventoryItem.get('itemPrice').invalid &&
+        (inventoryItem.get('itemPrice').dirty ||
+          inventoryItem.get('itemPrice').touched ||
+          submitClicked)
+      "
+      >Price is required and must be greater than 0</mat-error
+    >
   </mat-form-field>
-  <div *ngIf="inventoryItem.get('itemPrice').invalid && (inventoryItem.get('itemPrice').dirty || inventoryItem.get('itemPrice').touched)"
-    class="alert alert-danger">
-    <div *ngIf="inventoryItem.get('itemPrice').errors.required">
-      Price is required.
-    </div>
-    <div *ngIf="inventoryItem.get('itemPrice').errors.min">
-      Price must be greater than zero
-    </div>
-  </div>
-  <label class="custom-file-upload">
-    <input type="file" accept="image/*" (change)="onSelectFile($event)" class="db" />
-    Upload Item Image
-    <!-- <img
+  <div class="control-bar">
+    <label class="custom-file-upload">
+      <input
+        type="file"
+        accept="image/*"
+        (change)="onSelectFile($event)"
+        class="db"
+      />
+      Upload Item Image
+      <!-- <img
       src="../../assets/icons/check.png"
       width="20px"
       alt=""
       *ngIf="!!imageUrl"
       class="tick"
     /> -->
-    <mat-icon *ngIf="!!imageUrl" class="tick">check_circle</mat-icon>
-  </label>
-  <button class="add-button" mat-flat-button color="primary" type="submit">
-    Add to Inventory
-  </button>
+      <mat-icon *ngIf="!!imageUrl" class="tick">check_circle</mat-icon>
+    </label>
+    <button class="add-button" mat-flat-button color="primary" type="submit">
+      Add to Inventory
+    </button>
+  </div>
 </form>
 <div style="margin-top: 20px; height: 10px">
   <mat-progress-bar
