@@ -18,7 +18,7 @@ export class ItemFormComponent implements OnInit {
     this.inventoryItem = new FormGroup({
       itemName: new FormControl(''),
       itemDescription: new FormControl(''),
-      itemPrice: new FormControl(''),
+      itemPrice: new FormControl('', [Validators.required, Validators.min(1)]),
     });
   }
 
@@ -39,7 +39,10 @@ export class ItemFormComponent implements OnInit {
       price: form.value.itemPrice,
       image: this.imageUrl ? this.imageUrl : null,
     };
-    this.itemService.addItem(item);
-    // console.log('Valid?', form.valid); // true or false
+    if (form.valid) {
+      this.itemService.addItem(item);
+      this.inventoryItem.reset();
+      this.imageUrl = null;
+    }
   }
 }

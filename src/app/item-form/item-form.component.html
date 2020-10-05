@@ -13,10 +13,19 @@
   </mat-form-field>
   <mat-form-field class="db">
     <mat-label>Item price</mat-label>
-    <input matInput formControlName="itemPrice" placeholder="Ex. $50" />
+    <input matInput type="number" formControlName="itemPrice" placeholder="Ex. $50" />
   </mat-form-field>
+  <div *ngIf="inventoryItem.get('itemPrice').invalid && (inventoryItem.get('itemPrice').dirty || inventoryItem.get('itemPrice').touched)"
+    class="alert alert-danger">
+    <div *ngIf="inventoryItem.get('itemPrice').errors.required">
+      Price is required.
+    </div>
+    <div *ngIf="inventoryItem.get('itemPrice').errors.min">
+      Price must be greater than zero
+    </div>
+  </div>
   <label class="custom-file-upload">
-    <input type="file" (change)="onSelectFile($event)" class="db" />
+    <input type="file" accept="image/*" (change)="onSelectFile($event)" class="db" />
     Upload Item Image
     <!-- <img
       src="../../assets/icons/check.png"
